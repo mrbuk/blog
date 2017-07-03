@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Docker on Markus&#39; Notebook</title>
+    <link>http://mrbuk.de/tags/docker/</link>
+    <description>Recent content in Docker on Markus&#39; Notebook</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 29 Jan 2016 20:00:07 +0200</lastBuildDate>
+    
+	<atom:link href="http://mrbuk.de/tags/docker/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Docker Machine wrong IP with Fusion driver</title>
+      <link>http://mrbuk.de/post/docker-machine-fusion-ip/</link>
+      <pubDate>Fri, 29 Jan 2016 20:00:07 +0200</pubDate>
+      
+      <guid>http://mrbuk.de/post/docker-machine-fusion-ip/</guid>
+      <description>Using docker-machine with VMWare Fusion may result in some weird behaviour if one has configured a static lease for the machine that docker will use.
+After trying to start the Docker VM using docker-machine an error message was printed that told me that the IP address changed and hence the certificates are not valid anymore. Option 1 regenerating the certificates didn&amp;rsquo;t sound right. Option 2 configuring a static lease for the VM sounded better.</description>
+    </item>
+    
+  </channel>
+</rss>

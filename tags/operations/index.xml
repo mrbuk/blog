@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Operations on Markus&#39; Notebook</title>
+    <link>http://mrbuk.de/tags/operations/</link>
+    <description>Recent content in Operations on Markus&#39; Notebook</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 04 Oct 2016 21:04:57 +0200</lastBuildDate>
+    
+	<atom:link href="http://mrbuk.de/tags/operations/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Memory/disk allocation of Cloud Foundry apps</title>
+      <link>http://mrbuk.de/post/memory-disk-allocation-cloud-foundry/</link>
+      <pubDate>Tue, 04 Oct 2016 21:04:57 +0200</pubDate>
+      
+      <guid>http://mrbuk.de/post/memory-disk-allocation-cloud-foundry/</guid>
+      <description>With the help of the cf api, cf cli and jq one can pretty easily check the amount of memory/storage allocated for apps/containers deployed in CF:
+cf curl /v2/apps | jq &#39;[.resources[].entity | \ select(.memory &amp;gt; 1) | \ {&amp;quot;mem&amp;quot;: . | (.memory * .instances), \ &amp;quot;disk&amp;quot;: . | (.disk_quota * .instances)}] | \ {&amp;quot;instances&amp;quot;: map(.) | length, \ &amp;quot;mem_total&amp;quot;: map(.mem) | add, \ &amp;quot;disk_total&amp;quot;: map(.disk) | add}&#39; { &amp;quot;instances&amp;quot;: 5, &amp;quot;mem_total&amp;quot;: 32768, &amp;quot;disk_total&amp;quot;: 32768 }  Values are in MB.</description>
+    </item>
+    
+  </channel>
+</rss>

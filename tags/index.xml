@@ -6,9 +6,82 @@
     <description>Recent content in Tags on Markus&#39; Notebook</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
+    <lastBuildDate>Fri, 24 Feb 2017 11:50:07 +0100</lastBuildDate>
     
 	<atom:link href="http://mrbuk.de/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Cloud Foundry</title>
+      <link>http://mrbuk.de/tags/cloud-foundry/</link>
+      <pubDate>Fri, 24 Feb 2017 11:50:07 +0100</pubDate>
+      
+      <guid>http://mrbuk.de/tags/cloud-foundry/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Docker</title>
+      <link>http://mrbuk.de/tags/docker/</link>
+      <pubDate>Fri, 29 Jan 2016 20:00:07 +0200</pubDate>
+      
+      <guid>http://mrbuk.de/tags/docker/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Java</title>
+      <link>http://mrbuk.de/tags/java/</link>
+      <pubDate>Wed, 05 Mar 2014 23:20:27 +0200</pubDate>
+      
+      <guid>http://mrbuk.de/tags/java/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Operations</title>
+      <link>http://mrbuk.de/tags/operations/</link>
+      <pubDate>Tue, 04 Oct 2016 21:04:57 +0200</pubDate>
+      
+      <guid>http://mrbuk.de/tags/operations/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Osx</title>
+      <link>http://mrbuk.de/tags/osx/</link>
+      <pubDate>Sun, 29 May 2016 10:08:00 +0200</pubDate>
+      
+      <guid>http://mrbuk.de/tags/osx/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Performance</title>
+      <link>http://mrbuk.de/tags/performance/</link>
+      <pubDate>Wed, 05 Mar 2014 23:20:27 +0200</pubDate>
+      
+      <guid>http://mrbuk.de/tags/performance/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Productivity</title>
+      <link>http://mrbuk.de/tags/productivity/</link>
+      <pubDate>Sun, 29 May 2016 10:08:00 +0200</pubDate>
+      
+      <guid>http://mrbuk.de/tags/productivity/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Troubleshooting</title>
+      <link>http://mrbuk.de/tags/troubleshooting/</link>
+      <pubDate>Fri, 24 Feb 2017 11:50:07 +0100</pubDate>
+      
+      <guid>http://mrbuk.de/tags/troubleshooting/</guid>
+      <description></description>
+    </item>
     
   </channel>
 </rss>

@@ -6,10 +6,21 @@
     <description>Recent content on Markus&#39; Notebook</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 04 Oct 2016 21:04:57 +0200</lastBuildDate>
+    <lastBuildDate>Fri, 24 Feb 2017 11:50:07 +0100</lastBuildDate>
     
 	<atom:link href="http://mrbuk.de/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Human Readable PCF Logs</title>
+      <link>http://mrbuk.de/post/human-readable-pcf-logs/</link>
+      <pubDate>Fri, 24 Feb 2017 11:50:07 +0100</pubDate>
+      
+      <guid>http://mrbuk.de/post/human-readable-pcf-logs/</guid>
+      <description>Sometimes you need to debug some Cloud Foundry jobs. One obvious thing to do is looking into logs. Unfortunately some of the jobs that use lager don&amp;rsquo;t log a human readable timestamp but only a epoch time.
+If you don&amp;rsquo;t use a log aggregation tool that allows you to transform the timestamps you might want to take a look at the following script:
+ Installation Installing is pretty easy either via</description>
+    </item>
     
     <item>
       <title>Memory/disk allocation of Cloud Foundry apps</title>
@@ -19,6 +30,16 @@
       <guid>http://mrbuk.de/post/memory-disk-allocation-cloud-foundry/</guid>
       <description>With the help of the cf api, cf cli and jq one can pretty easily check the amount of memory/storage allocated for apps/containers deployed in CF:
 cf curl /v2/apps | jq &#39;[.resources[].entity | \ select(.memory &amp;gt; 1) | \ {&amp;quot;mem&amp;quot;: . | (.memory * .instances), \ &amp;quot;disk&amp;quot;: . | (.disk_quota * .instances)}] | \ {&amp;quot;instances&amp;quot;: map(.) | length, \ &amp;quot;mem_total&amp;quot;: map(.mem) | add, \ &amp;quot;disk_total&amp;quot;: map(.disk) | add}&#39; { &amp;quot;instances&amp;quot;: 5, &amp;quot;mem_total&amp;quot;: 32768, &amp;quot;disk_total&amp;quot;: 32768 }  Values are in MB.</description>
+    </item>
+    
+    <item>
+      <title>OSX Toogle Natural Scrolling</title>
+      <link>http://mrbuk.de/post/osx-toogle-natural-scrolling/</link>
+      <pubDate>Sun, 29 May 2016 10:08:00 +0200</pubDate>
+      
+      <guid>http://mrbuk.de/post/osx-toogle-natural-scrolling/</guid>
+      <description>When using the trackpad I prefer natural scrolling when using the MacBook with a keyboard and regular mouse I prefer to switch off natural scrolling. To make things more comfortable I came up with the following script the I run via Spotlight:
+ Put it on the desktop or some place you like. Keep in mind that if you want to run it via Spotlight you should use .command as the suffix.</description>
     </item>
     
     <item>

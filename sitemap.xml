@@ -3,8 +3,18 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>http://mrbuk.de/post/human-readable-pcf-logs/</loc>
+    <lastmod>2017-02-24T11:50:07+01:00</lastmod>
+  </url>
+  
+  <url>
     <loc>http://mrbuk.de/post/memory-disk-allocation-cloud-foundry/</loc>
     <lastmod>2016-10-04T21:04:57+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://mrbuk.de/post/osx-toogle-natural-scrolling/</loc>
+    <lastmod>2016-05-29T10:08:00+02:00</lastmod>
   </url>
   
   <url>
@@ -23,19 +33,68 @@
   </url>
   
   <url>
+    <loc>http://mrbuk.de/tags/cloud-foundry/</loc>
+    <lastmod>2017-02-24T11:50:07+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://mrbuk.de/tags/docker/</loc>
+    <lastmod>2016-01-29T20:00:07+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://mrbuk.de/tags/java/</loc>
+    <lastmod>2014-03-05T23:20:27+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>http://mrbuk.de/</loc>
+    <lastmod>2017-02-24T11:50:07+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://mrbuk.de/tags/operations/</loc>
     <lastmod>2016-10-04T21:04:57+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://mrbuk.de/tags/osx/</loc>
+    <lastmod>2016-05-29T10:08:00+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://mrbuk.de/tags/performance/</loc>
+    <lastmod>2014-03-05T23:20:27+02:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>http://mrbuk.de/post/</loc>
-    <lastmod>2016-10-04T21:04:57+02:00</lastmod>
+    <lastmod>2017-02-24T11:50:07+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://mrbuk.de/tags/productivity/</loc>
+    <lastmod>2016-05-29T10:08:00+02:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>http://mrbuk.de/tags/</loc>
+    <lastmod>2017-02-24T11:50:07+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://mrbuk.de/tags/troubleshooting/</loc>
+    <lastmod>2017-02-24T11:50:07+01:00</lastmod>
     <priority>0</priority>
   </url>
   

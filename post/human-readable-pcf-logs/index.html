@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<title> Human Readable PCF Logs &middot; Markus&#39; Notebook </title>
+
+
+<link rel="stylesheet" href="http://mrbuk.de/css/slim.css">
+<link rel="stylesheet" href="http://mrbuk.de/css/highlight.min.css">
+<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700|Source+Code+Pro' rel='stylesheet' type='text/css'>
+
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+<link rel="shortcut icon" href="/favicon.ico">
+
+
+<link href="" rel="alternate" type="application/rss+xml" title="Markus&#39; Notebook" />
+
+</head>
+
+<body>
+  <div class="container">
+    <div class="header">
+  <h1 class="site-title"><a href="http://mrbuk.de/">Markus&#39; Notebook</a></h1>
+  <p class="site-tagline"></p>
+  <div class="nav">
+    <a class="nav-btn" href="#">
+      <span class="ci ci-burger"></span>
+    </a>
+    <ul class="nav-list">
+       
+	  <li class="spacer">&ac;</li>
+
+      <li><a href="https://github.com/mrbuk">Github</a></li> 
+      <li><a href="https://twitter.com/mrbt">Twitter</a></li> 
+    </ul>
+  </div>
+</div>
+    <div class="content">
+      <div class="posts">
+        <div class="post">
+          <h2 class="post-title"><a href="http://mrbuk.de/post/human-readable-pcf-logs/">Human Readable PCF Logs</a></h2>
+          <span class="post-date">Feb 24, 2017 </span>
+          <div class="post-content">
+            
+
+<p>Sometimes you need to debug some <a href="https://www.cloudfoundry.org/">Cloud Foundry</a> jobs. One obvious thing to do is looking into logs. Unfortunately some of the jobs that use <code>lager</code> don&rsquo;t log a human readable timestamp but only a epoch time.</p>
+
+<p>If you don&rsquo;t use a log aggregation tool that allows you to transform the timestamps you might want to take a look at the following script:</p>
+
+<script src="//gist.github.com/mrbuk/5d60c22117afc20b032b69b6bc75c789.js?file=plt.py"></script>
+
+<h2 id="installation">Installation</h2>
+
+<p>Installing is pretty easy either via</p>
+
+<pre><code># ensure you are root. if not 'sudo -i'
+
+# copy file content to clipboard and paste in editor
+vi /usr/local/bin/plt
+
+chmod +x plt
+</code></pre>
+
+<p>or if you prefer a single <em>paste</em> action:</p>
+
+<pre><code># ensure you are root. if not 'sudo -i'
+
+cat &gt; /usr/local/bin/plt &lt;&lt;EOF
+#!/usr/bin/env python
+
+import sys
+import json
+from datetime import datetime
+
+print sys.argv
+
+file=sys.stdin
+if len(sys.argv) &gt;= 2:
+        # first argument is the name of the binary
+        file = open(sys.argv[1], &quot;r&quot;)
+
+# not using the following
+#       for line in sys.stdin:
+# as this seems to use the 'readlines()' method
+# which waits until EOF. So not suitable for 'tail -f'
+line = file.readline()
+while line:
+        try:
+                obj=json.loads(line)
+                ts=datetime.utcfromtimestamp(float(obj[&quot;timestamp&quot;]))
+                print &quot;%s,%s,'%s'&quot; % (ts, obj[&quot;message&quot;], json.dumps(obj[&quot;data&quot;]))
+        except:
+                print line
+
+        line = file.readline()
+EOF
+chmod +x /usr/local/bin/plt
+</code></pre>
+
+<h2 id="usage">Usage</h2>
+
+<p>Either stream via pipe</p>
+
+<pre><code>tail -f /var/vcap/sys/log/mysql/mariadb_ctrl.combined.log | plt
+</code></pre>
+
+<p>or provide filename as argument</p>
+
+<pre><code>plt /var/vcap/sys/log/mysql/mariadb_ctrl.combined.log 
+
+</code></pre>
+
+<h1 id="why-not-using-go">Why not using Go</h1>
+
+<p>It would be simpler to write a small Go application that uses <em>lager</em> instead of parsing the logs with python. <strong>But</strong> transferring a binary is in real life more difficult than copying a few lines of text. Also most Linux distros should have python included even when hardened and being just enough OS.</p>
+
+          </div>
+        </div>
+        <div class="pagination"> 
+          <a class="btn next " href="http://mrbuk.de/post/memory-disk-allocation-cloud-foundry/"> Next</a> 
+        </div>
+      </div>
+    </div>
+    
+    <div id="disqus_thread"></div>
+    <script>
+      var disqus_config = function () {
+        this.page.url = "http://mrbuk.de/post/human-readable-pcf-logs/";
+        
+      };
+      (function() {
+        var d = document, s = d.createElement('script');
+        s.src = '//mrbuk-de.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+      })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+    
+    <div class="footer">
+  
+  <p>Copyright &copy; Markus Bukowski 2017. Powered by <a href="http://gohugo.io/">Hugo</a> and <a href="https://github.com/zhe/hugo-theme-slim">slim theme</a>.
+</p>
+  
+</div>
+
+  </div>
+  <script src="http://mrbuk.de/js/slim.js"></script>
+  <script src="http://mrbuk.de/js/highlight.min.js"></script>
+  <script>
+    hljs.initHighlightingOnLoad();
+  </script>
+  <script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-76206451-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+
+</body>
+
+</html>
