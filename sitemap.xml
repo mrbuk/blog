@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <url>
+    <loc>https://mrbuk.de/post/memory-disk-allocation-cloud-foundry/</loc>
+    <lastmod>2016-10-04T21:04:57+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://mrbuk.de/post/docker-machine-fusion-ip/</loc>
+    <lastmod>2016-01-29T20:00:07+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://mrbuk.de/post/pseudo-java-profiler/</loc>
+    <lastmod>2014-03-05T23:20:27+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://mrbuk.de/categories/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://mrbuk.de/</loc>
+    <lastmod>2016-10-04T21:04:57+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://mrbuk.de/post/</loc>
+    <lastmod>2016-10-04T21:04:57+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://mrbuk.de/tags/</loc>
+    <priority>0</priority>
+  </url>
+  
+</urlset>

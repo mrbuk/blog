@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<title> Pseudo Java Profiler aka sorted thread dump &middot; Markus&#39; Notebook </title>
+
+
+<link rel="stylesheet" href="https://mrbuk.de/css/slim.css">
+<link rel="stylesheet" href="https://mrbuk.de/css/highlight.min.css">
+<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700|Source+Code+Pro' rel='stylesheet' type='text/css'>
+
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+<link rel="shortcut icon" href="/favicon.ico">
+
+
+<link href="" rel="alternate" type="application/rss+xml" title="Markus&#39; Notebook" />
+
+</head>
+
+<body>
+  <div class="container">
+    <div class="header">
+  <h1 class="site-title"><a href="https://mrbuk.de/">Markus&#39; Notebook</a></h1>
+  <p class="site-tagline"></p>
+  <div class="nav">
+    <a class="nav-btn" href="#">
+      <span class="ci ci-burger"></span>
+    </a>
+    <ul class="nav-list">
+       
+	  <li class="spacer">&ac;</li>
+
+      <li><a href="https://github.com/mrbuk">Github</a></li> 
+      <li><a href="https://twitter.com/mrbt">Twitter</a></li> 
+    </ul>
+  </div>
+</div>
+    <div class="content">
+      <div class="posts">
+        <div class="post">
+          <h2 class="post-title"><a href="https://mrbuk.de/post/pseudo-java-profiler/">Pseudo Java Profiler aka sorted thread dump</a></h2>
+          <span class="post-date">Mar 5, 2014 </span>
+          <div class="post-content">
+            <p>Ever wondered what your multi threaded Java application is doing? A thread dump sorted by CPU consumption can help to find out. Having only access to a shell (bash) as well as to the tools bundled with the JDK I came up with the following solution</p>
+
+<pre><code>#!/bin/bash
+
+if [ &quot;$#&quot; -ne 1 ]; then
+    echo &quot;Usage: $0 jps-filter-grep-expr&quot;
+    exit 1
+fi
+
+jps_filter=$1
+
+# extract the PID of the java process
+java_app_pid=$(jps -lvm | grep ${jps_filter} | awk '{print $1}')
+
+# get 10 top consuming threads
+top_consuming_threads=$(top -n1 -H -p ${java_app_pid} | \
+    egrep java | egrep -o '^[^0-9]*[0-9]+ ' | \
+    sed -r 's/[^0-9]+//g' | head)
+
+temp_file=$(mktemp)
+
+# create jstack_output
+jstack ${java_app_pid} &gt; ${temp_file}
+
+# print for every thread the current stack trace
+for thread in ${top_consuming_threads}; do
+        echo &quot;Stack trace for Thread '${thread}':&quot;
+        printf -v thread_hex &quot;%x&quot; $thread
+        grep -A10 &quot;nid=0x${thread_hex}&quot; ${temp_file}
+        echo
+done;
+
+rm ${temp_file}
+</code></pre>
+
+<p>What we are doing to achieve that is the following:</p>
+
+<ol>
+<li>Extract the PID of the Java process from jps</li>
+<li>Run top once, show the threads and restrict to the PID from 1. and extract the top 10 (head)</li>
+<li>Run jstack and write result to a temporary file</li>
+<li>Iterate to the through the list form 2. and for each element using grep
+
+<ul>
+<li>find the right thread id</li>
+<li>extract the next 10 lines after the thread id</li>
+</ul></li>
+<li>Delete temporary file</li>
+</ol>
+
+          </div>
+        </div>
+        <div class="pagination">
+          <a class="btn previous " href="https://mrbuk.de/post/docker-machine-fusion-ip/"> Prev</a>  
+        </div>
+      </div>
+    </div>
+    
+    <div id="disqus_thread"></div>
+    <script>
+      var disqus_config = function () {
+        this.page.url = "https://mrbuk.de/post/pseudo-java-profiler/";
+        
+      };
+      (function() {
+        var d = document, s = d.createElement('script');
+        s.src = '//mrbuk-de.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+      })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+    
+    <div class="footer">
+  
+  <p>Copyright &copy; Markus Bukowski 2017. Powered by <a href="http://gohugo.io/">Hugo</a> and <a href="https://github.com/zhe/hugo-theme-slim">slim theme</a>.
+</p>
+  
+</div>
+
+  </div>
+  <script src="https://mrbuk.de/js/slim.js"></script>
+  <script src="https://mrbuk.de/js/highlight.min.js"></script>
+  <script>
+    hljs.initHighlightingOnLoad();
+  </script>
+  <script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-76206451-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<title> Docker Machine wrong IP with Fusion driver &middot; Markus&#39; Notebook </title>
+
+
+<link rel="stylesheet" href="https://mrbuk.de/css/slim.css">
+<link rel="stylesheet" href="https://mrbuk.de/css/highlight.min.css">
+<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700|Source+Code+Pro' rel='stylesheet' type='text/css'>
+
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+<link rel="shortcut icon" href="/favicon.ico">
+
+
+<link href="" rel="alternate" type="application/rss+xml" title="Markus&#39; Notebook" />
+
+</head>
+
+<body>
+  <div class="container">
+    <div class="header">
+  <h1 class="site-title"><a href="https://mrbuk.de/">Markus&#39; Notebook</a></h1>
+  <p class="site-tagline"></p>
+  <div class="nav">
+    <a class="nav-btn" href="#">
+      <span class="ci ci-burger"></span>
+    </a>
+    <ul class="nav-list">
+       
+	  <li class="spacer">&ac;</li>
+
+      <li><a href="https://github.com/mrbuk">Github</a></li> 
+      <li><a href="https://twitter.com/mrbt">Twitter</a></li> 
+    </ul>
+  </div>
+</div>
+    <div class="content">
+      <div class="posts">
+        <div class="post">
+          <h2 class="post-title"><a href="https://mrbuk.de/post/docker-machine-fusion-ip/">Docker Machine wrong IP with Fusion driver</a></h2>
+          <span class="post-date">Jan 29, 2016 </span>
+          <div class="post-content">
+            <p>Using docker-machine with VMWare Fusion may result in some weird behaviour if one has configured a static lease for the machine that docker will use.</p>
+
+<p>After trying to start the Docker VM using docker-machine an error message was printed that told me that the IP address changed and hence the certificates are not valid anymore. Option 1 regenerating the certificates didn&rsquo;t sound right. Option 2 configuring a static lease for the VM sounded better. After that happened a weird problem showed up. Once the machine has booted (<code>docker-machine restart default</code>) docker-machine was not able to connect to the VM as is was still using the old IP.</p>
+
+<pre><code>$ docker-machine env default
+Error checking TLS connection: Error checking and/or regenerating the certs: There was an error validating certificates for host &quot;192.168.193.132:2376&quot;: dial tcp 192.168.193.132:2376: i/o timeout
+You can attempt to regenerate them using 'docker-machine regenerate-certs [name]'.
+Be advised that this will trigger a Docker daemon restart which will stop running containers.
+</code></pre>
+
+<p>Doing an <code>inspect</code> on the machine the configuration showed the right IP</p>
+
+<pre><code>$ docker-machine inspect default
+{
+    &quot;ConfigVersion&quot;: 3,
+    &quot;Driver&quot;: {
+        &quot;IPAddress&quot;: &quot;192.168.193.131&quot;,
+        &quot;MachineName&quot;: &quot;default&quot;,
+        &quot;SSHUser&quot;: &quot;docker&quot;,
+        &quot;SSHPort&quot;: 22,
+        ...
+    }
+    ...
+}
+</code></pre>
+
+<p>Checking with <code>ip</code> the old IP appears</p>
+
+<pre><code>$ docker-machine ip default
+192.168.193.132
+</code></pre>
+
+<p>No matter how many times the machine was stopped, restarted, killed the old IP remained.</p>
+
+<p>Checking the code of the <a href="https://github.com/docker/machine/blob/v0.5.6/drivers/vmwarefusion/fusion_darwin.go#L451">Docker Machine Fusion Driver</a> revealed that (at least for 0.5.6) the following file is used to determine the IP address</p>
+
+<pre><code>// DHCP lease table for NAT vmnet interface
+var dhcpfile = &quot;/var/db/vmware/vmnet-dhcpd-vmnet8.leases&quot;
+</code></pre>
+
+<p>Taking a look into that file showed some wrong entries. The problem seems to be that this file is only populated with dynamically assigned addresses. If e.g. one has created a static lease in</p>
+
+<pre><code>/Library/Preferences/VMware\ Fusion/vmnet8/dhcpd.conf
+</code></pre>
+
+<p>the lease won&rsquo;t show up in the file that docker checks. So as a workaround I have created a lease my self</p>
+
+<pre><code>lease 192.168.193.131 {
+    starts 2 2016/01/26 14:01:49;
+    ends 2 2017/01/26 14:03:49;
+    hardware ethernet 00:xx:xx:xx:xx:xx;
+    uid 00:xx:xx:xx:xx:xx;
+    client-hostname &quot;box&quot;;
+}
+</code></pre>
+
+<p>I think that using <code>vmrun</code> instead of checking the dhcp lease file would make more sense.</p>
+
+<pre><code>/Applications/VMware\ Fusion.app/Contents/Library/vmrun -T ws GetGuestIPAddress ~/.docker/machine/machines/default/default.vmx
+192.168.193.131
+</code></pre>
+
+<p>Unfortunately I could not get access to any documentation saying since which version that feature is available. Alternatively the current approach could be enriched to check first the following file for static leases</p>
+
+<pre><code>/Library/Preferences/VMware\ Fusion/vmnet8/dhcpd.conf
+</code></pre>
+
+<p><strong>NOTE:</strong> <code>vmrun</code> is already used for <a href="https://github.com/docker/machine/blob/v0.5.6/drivers/vmwarefusion/fusion_darwin.go#L200">checking if the vm runs</a></p>
+
+<p><strong>UPDATE: 10.04.2016:</strong> It seems that GetGuestIPAddress only works with installed VM Guest tools. I have modified the docker-machine fusion driver so that it also checks the regular config. <a href="https://github.com/docker/machine/pull/3289">Pull request</a>, <a href="https://github.com/docker/machine/issues/2137">Issue</a></p>
+
+          </div>
+        </div>
+        <div class="pagination">
+          <a class="btn previous " href="https://mrbuk.de/post/memory-disk-allocation-cloud-foundry/"> Prev</a>  
+          <a class="btn next " href="https://mrbuk.de/post/pseudo-java-profiler/"> Next</a> 
+        </div>
+      </div>
+    </div>
+    
+    <div id="disqus_thread"></div>
+    <script>
+      var disqus_config = function () {
+        this.page.url = "https://mrbuk.de/post/docker-machine-fusion-ip/";
+        
+      };
+      (function() {
+        var d = document, s = d.createElement('script');
+        s.src = '//mrbuk-de.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+      })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+    
+    <div class="footer">
+  
+  <p>Copyright &copy; Markus Bukowski 2017. Powered by <a href="http://gohugo.io/">Hugo</a> and <a href="https://github.com/zhe/hugo-theme-slim">slim theme</a>.
+</p>
+  
+</div>
+
+  </div>
+  <script src="https://mrbuk.de/js/slim.js"></script>
+  <script src="https://mrbuk.de/js/highlight.min.js"></script>
+  <script>
+    hljs.initHighlightingOnLoad();
+  </script>
+  <script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-76206451-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<title> Memory/disk allocation of Cloud Foundry apps &middot; Markus&#39; Notebook </title>
+
+
+<link rel="stylesheet" href="https://mrbuk.de/css/slim.css">
+<link rel="stylesheet" href="https://mrbuk.de/css/highlight.min.css">
+<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700|Source+Code+Pro' rel='stylesheet' type='text/css'>
+
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+<link rel="shortcut icon" href="/favicon.ico">
+
+
+<link href="" rel="alternate" type="application/rss+xml" title="Markus&#39; Notebook" />
+
+</head>
+
+<body>
+  <div class="container">
+    <div class="header">
+  <h1 class="site-title"><a href="https://mrbuk.de/">Markus&#39; Notebook</a></h1>
+  <p class="site-tagline"></p>
+  <div class="nav">
+    <a class="nav-btn" href="#">
+      <span class="ci ci-burger"></span>
+    </a>
+    <ul class="nav-list">
+       
+	  <li class="spacer">&ac;</li>
+
+      <li><a href="https://github.com/mrbuk">Github</a></li> 
+      <li><a href="https://twitter.com/mrbt">Twitter</a></li> 
+    </ul>
+  </div>
+</div>
+    <div class="content">
+      <div class="posts">
+        <div class="post">
+          <h2 class="post-title"><a href="https://mrbuk.de/post/memory-disk-allocation-cloud-foundry/">Memory/disk allocation of Cloud Foundry apps</a></h2>
+          <span class="post-date">Oct 4, 2016 </span>
+          <div class="post-content">
+            <p>With the help of the cf api, cf cli and <a href="https://stedolan.github.io/jq/">jq</a> one can pretty easily check the amount of memory/storage allocated for apps/containers deployed in CF:</p>
+
+<pre><code>cf curl /v2/apps | jq '[.resources[].entity | \
+ select(.memory &gt; 1) | \
+ {&quot;mem&quot;: . | (.memory * .instances), \
+ &quot;disk&quot;: . | (.disk_quota * .instances)}] | \
+ {&quot;instances&quot;: map(.) | length, \
+ &quot;mem_total&quot;: map(.mem) | add, \
+ &quot;disk_total&quot;: map(.disk) | add}'
+ 
+{
+  &quot;instances&quot;: 5,
+  &quot;mem_total&quot;: 32768,
+  &quot;disk_total&quot;: 32768
+}
+</code></pre>
+
+<p>Values are in MB.</p>
+
+<p><strong>Note:</strong> above mentioned command only works if you have less than 100 apps (and you set the page size to 100). In all other cases you will only get the amount for the apps on the first page returned by the api. If you are interested in getting more than that use the following script:</p>
+
+<pre><code>import json
+import subprocess
+import sys
+ 
+ 
+filtered_objects=dict()
+next_url = &quot;/v2/apps?page=1&amp;results-per-page=100&quot;
+ 
+while next_url:
+      print &gt;&gt; sys.stderr, 'Calling: %s' % next_url
+ 
+      cf_curl_command='cf curl &quot;%s&quot;' % next_url
+      cf_curl_output=subprocess.Popen(cf_curl_command, shell=True, stdout=subprocess.PIPE).stdout
+ 
+      obj=json.load(cf_curl_output)
+ 
+      next_url=obj[&quot;next_url&quot;]
+      resources=obj[&quot;resources&quot;]
+ 
+      for element in resources:
+            entity = element[&quot;entity&quot;]
+            memory_per_instance = float(entity[&quot;memory&quot;])
+            if memory_per_instance &gt; 1:
+                  state = entity[&quot;state&quot;]
+                  memory_per_app = float(entity[&quot;instances&quot;]) * memory_per_instance
+ 
+                  if state not in filtered_objects:
+                        filtered_objects[state] = 0.0
+ 
+                  filtered_objects[state] = filtered_objects.get(state, 0.0) + memory_per_app
+ 
+ 
+print json.dumps(filtered_objects)
+</code></pre>
+
+<p>Compared to <code>jq</code> before you have all power of python. Also you don&rsquo;t need to take care of authentication as <code>cf curl</code> is invoked. To run simply do <code>python script_name.py</code> on the machine where you have logged in using <code>cf login</code> before.</p>
+
+          </div>
+        </div>
+        <div class="pagination"> 
+          <a class="btn next " href="https://mrbuk.de/post/docker-machine-fusion-ip/"> Next</a> 
+        </div>
+      </div>
+    </div>
+    
+    <div id="disqus_thread"></div>
+    <script>
+      var disqus_config = function () {
+        this.page.url = "https://mrbuk.de/post/memory-disk-allocation-cloud-foundry/";
+        
+      };
+      (function() {
+        var d = document, s = d.createElement('script');
+        s.src = '//mrbuk-de.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+      })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+    
+    <div class="footer">
+  
+  <p>Copyright &copy; Markus Bukowski 2017. Powered by <a href="http://gohugo.io/">Hugo</a> and <a href="https://github.com/zhe/hugo-theme-slim">slim theme</a>.
+</p>
+  
+</div>
+
+  </div>
+  <script src="https://mrbuk.de/js/slim.js"></script>
+  <script src="https://mrbuk.de/js/highlight.min.js"></script>
+  <script>
+    hljs.initHighlightingOnLoad();
+  </script>
+  <script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-76206451-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+
+</body>
+
+</html>
