@@ -1,0 +1,15 @@
+#theme = "slim"
+baseurl = "https://mrbuk.de/"
+languageCode = "en-us"
+title = "Markus' Notebook"
+
+[params]
+GithubID = "mrbuk"
+TwitterID = "mrbt"
+AnalyticsID = "UA-76206451-1"
+DisqusShortname = "mrbuk-de"
+Summary = false # takes true or false
+Content = false  # takes true or false
+FooterMsg = """
+Copyright &copy; Markus Bukowski 2017. Powered by <a href="http://gohugo.io/">Hugo</a> and <a href="https://github.com/zhe/hugo-theme-slim">slim theme</a>.
+"""
