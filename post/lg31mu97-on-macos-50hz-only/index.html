@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<title> Restrict your LG31MU97 on MacOS to 50Hz &middot; Markus&#39; Notebook </title>
+
+
+<link rel="stylesheet" href="http://mrbuk.de/css/slim.css">
+<link rel="stylesheet" href="http://mrbuk.de/css/highlight.min.css">
+<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700|Source+Code+Pro' rel='stylesheet' type='text/css'>
+
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+<link rel="shortcut icon" href="/favicon.ico">
+
+
+<link href="" rel="alternate" type="application/rss+xml" title="Markus&#39; Notebook" />
+
+</head>
+
+<body>
+  <div class="container">
+    <div class="header">
+  <h1 class="site-title"><a href="http://mrbuk.de/">Markus&#39; Notebook</a></h1>
+  <p class="site-tagline"></p>
+  <div class="nav">
+    <a class="nav-btn" href="#">
+      <span class="ci ci-burger"></span>
+    </a>
+    <ul class="nav-list">
+       
+	  <li class="spacer">&ac;</li>
+
+      <li><a href="https://github.com/mrbuk">Github</a></li> 
+      <li><a href="https://twitter.com/mrbt">Twitter</a></li> 
+    </ul>
+  </div>
+</div>
+    <div class="content">
+      <div class="posts">
+        <div class="post">
+          <h2 class="post-title"><a href="http://mrbuk.de/post/lg31mu97-on-macos-50hz-only/">Restrict your LG31MU97 on MacOS to 50Hz</a></h2>
+          <span class="post-date">Oct 5, 2017 </span>
+          <div class="post-content">
+            <p><em><strong>Caution:</strong> Before doing anything please make sure that you have working backup. <strong>Apply at your own risk!</strong></em></p>
+
+<p>I am using a <a href="http://www.lg.com/us/monitors/lg-31MU97-B-4k-ips-led-monitor">LG31MU97-B</a> display with a MacBook Pro 15&rdquo; (Mid 2015). According to the displays EDID the recommended resolution is <em>4096x2160@<strong>60Hz</strong></em>. Unfortunately when running at that refresh rate the display turns black after a while and becomes unusable. This seems to be a limitation of that particular setup under MacOS.</p>
+
+<p>The only known fix - other than switching to Linux or Windows - is to use a 50Hz based resolution. Unfortunately MacOS only supports HiDPI with the preferred resolution which according to the displays EDID is the 60Hz one. To get HiDPI working the idea is to disable the 60Hz resolution by patching the EDID in following file</p>
+
+<pre><code>/System/Library/Displays/Contents/Resources/Overrides/DisplayVendorID-1e6d/DisplayProductID-76e7
+</code></pre>
+
+<p>After spending some time looking into the EDID the plan was to remove one timing descriptor and recalculate the checksum at the end of the extension block. The changes are marginal (first file is the orginal, the second is the patched one) but very effective:</p>
+
+<pre><code>$ diff ./DisplayProductID-76e7 /System/Library/Displays/Contents/Resources/Overrides/DisplayVendorID-1e6d/DisplayProductID-76e7
+22c22
+&lt;       x3AReQMAAwAoeNkAh/8PTwAHAB8Abwg9AC8ABwC0uACH/w+fADsAVwBvCD0ALwAHAAAA
+---
+&gt;       x3AReQMAAwAUtLgAh/8PnwA7AFcAbwg9AC8ABwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+24c24
+&lt;       AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOeQ
+---
+&gt;       AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAECQ
+</code></pre>
+
+<p>The result is the following file:</p>
+
+<script src="//gist.github.com/mrbuk/4af9fe3e5f797339f3df4e95fdc44d23.js?file=DisplayProductID-76e7"></script>
+
+<p>To disable the <em>4096x2160@<strong>60Hz</strong></em> resolution overwrite the patched file to the above mentioned location and restart the Mac. Now the default resolution is <em>4096x2160@<strong>50Hz</strong></em> meaning all supported HiDPI resolutions should work.</p>
+
+          </div>
+        </div>
+        <div class="pagination"> 
+          <a class="btn next " href="http://mrbuk.de/post/human-readable-pcf-logs/"> Next</a> 
+        </div>
+      </div>
+    </div>
+    
+    <div id="disqus_thread"></div>
+    <script>
+      var disqus_config = function () {
+        this.page.url = "http://mrbuk.de/post/lg31mu97-on-macos-50hz-only/";
+        
+      };
+      (function() {
+        var d = document, s = d.createElement('script');
+        s.src = '//mrbuk-de.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+      })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+    
+    <div class="footer">
+  
+  <p>Copyright &copy; Markus Bukowski 2017. Powered by <a href="http://gohugo.io/">Hugo</a> and <a href="https://github.com/zhe/hugo-theme-slim">slim theme</a>.
+</p>
+  
+</div>
+
+  </div>
+  <script src="http://mrbuk.de/js/slim.js"></script>
+  <script src="http://mrbuk.de/js/highlight.min.js"></script>
+  <script>
+    hljs.initHighlightingOnLoad();
+  </script>
+  <script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-76206451-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+
+</body>
+
+</html>

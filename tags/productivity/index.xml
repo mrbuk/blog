@@ -6,10 +6,21 @@
     <description>Recent content in Productivity on Markus&#39; Notebook</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 29 May 2016 10:08:00 +0200</lastBuildDate>
+    <lastBuildDate>Thu, 05 Oct 2017 01:40:00 +0200</lastBuildDate>
     
 	<atom:link href="http://mrbuk.de/tags/productivity/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Restrict your LG31MU97 on MacOS to 50Hz</title>
+      <link>http://mrbuk.de/post/lg31mu97-on-macos-50hz-only/</link>
+      <pubDate>Thu, 05 Oct 2017 01:40:00 +0200</pubDate>
+      
+      <guid>http://mrbuk.de/post/lg31mu97-on-macos-50hz-only/</guid>
+      <description>Caution: Before doing anything please make sure that you have working backup. Apply at your own risk!
+I am using a LG31MU97-B display with a MacBook Pro 15&amp;rdquo; (Mid 2015). According to the displays EDID the recommended resolution is 4096x2160@60Hz. Unfortunately when running at that refresh rate the display turns black after a while and becomes unusable. This seems to be a limitation of that particular setup under MacOS.
+The only known fix - other than switching to Linux or Windows - is to use a 50Hz based resolution.</description>
+    </item>
     
     <item>
       <title>OSX Toogle Natural Scrolling</title>
