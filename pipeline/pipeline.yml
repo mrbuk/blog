@@ -2,21 +2,25 @@ resources:
   - name: blog
     type: git
     source:
-      uri: https://github.com/mrbuk/blog
+      uri: git@github.com:mrbuk/blog.git
       branch: pipeline
+      private_key: ((private_key))
 
   - name: gh-pages
     type: git
     source:
-      uri: https://github.com/mrbuk/blog
+      uri: git@github.com:mrbuk/blog.git
       branch: gh-pages-new
+      private_key: ((private_key))
 
 jobs:
   - name: hugo
     plan:
       - get: blog
+      - get: gh-pages
 
       - task: build
         file: blog/pipeline/tasks/build/task.yml
 
       - put: gh-pages
+        params: { repository: blog/public }

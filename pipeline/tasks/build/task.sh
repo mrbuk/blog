@@ -1,4 +1,6 @@
 #!/bin/sh
 
 cd blog
-hugo -t slim -d ../gh-pages
+rm -rf public/*
+hugo -t slim
+echo "mrbuk.de" > public/CNAME
