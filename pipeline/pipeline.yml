@@ -1,0 +1,24 @@
+resources:
+  - name: blog
+    type: git
+    source:
+      uri: https://github.com/mrbuk/blog
+      branch: pipeline
+
+  - name: gh-pages
+    type: git
+    source:
+      uri: https://github.com/mrbuk/blog
+      branch: gh-pages-new
+
+jobs:
+  - name: hugo
+    plan:
+      - get: blog
+
+      - task: build
+        file: pipeline/tasks/build/task.yml
+
+      - put: gh-pages
+        params:
+          from: public/
