@@ -23,4 +23,6 @@ jobs:
         file: blog/pipeline/tasks/build/task.yml
 
       - put: gh-pages
-        params: { repository: blog/public }
+        params:
+          repository: new-gh-pages
+          rebase: true

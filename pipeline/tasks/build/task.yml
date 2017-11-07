@@ -9,6 +9,10 @@ image_resource:
 
 inputs:
 - name: blog
+- name : gh-pages
+
+outputs:
+- name: new-gh-pages
 
 run:
   path: blog/pipeline/tasks/build/task.sh
