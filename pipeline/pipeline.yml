@@ -17,8 +17,6 @@ jobs:
       - get: blog
 
       - task: build
-        file: pipeline/tasks/build/task.yml
+        file: blog/pipeline/tasks/build/task.yml
 
       - put: gh-pages
-        params:
-          from: public/

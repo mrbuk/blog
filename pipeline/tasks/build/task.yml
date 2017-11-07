@@ -11,4 +11,4 @@ inputs:
 - name: blog
 
 run:
-  path: pipeline/tasks/build/task.sh
+  path: blog/pipeline/tasks/build/task.sh
