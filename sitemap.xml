@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>http://mrbuk.de/post/test/</loc>
+    <lastmod>2017-11-08T00:35:15+01:00</lastmod>
+  </url>
+  
+  <url>
     <loc>http://mrbuk.de/post/lg31mu97-on-macos-50hz-only/</loc>
     <lastmod>2017-10-05T01:40:00+02:00</lastmod>
   </url>
@@ -57,7 +62,7 @@
   
   <url>
     <loc>http://mrbuk.de/</loc>
-    <lastmod>2017-10-05T01:40:00+02:00</lastmod>
+    <lastmod>2017-11-08T00:35:15+01:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -81,7 +86,7 @@
   
   <url>
     <loc>http://mrbuk.de/post/</loc>
-    <lastmod>2017-10-05T01:40:00+02:00</lastmod>
+    <lastmod>2017-11-08T00:35:15+01:00</lastmod>
     <priority>0</priority>
   </url>
   
