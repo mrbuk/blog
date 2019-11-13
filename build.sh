@@ -20,7 +20,7 @@ fi
 
 # delete old files. this will keep the .git dir
 rm -rf public/*
-echo "mrbuk.de" > public/CNAME
+echo "blog.mrbuk.de" > public/CNAME
 
 # build, will create new 
 hugo -t slim || exit 1
