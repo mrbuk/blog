@@ -1,22 +1,22 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Posts on Markus&#39; Notebook</title>
-    <link>http://mrbuk.de/post/</link>
+    <link>http://blog.mrbuk.de/post/</link>
     <description>Recent content in Posts on Markus&#39; Notebook</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Thu, 05 Oct 2017 01:40:00 +0200</lastBuildDate>
     
-	<atom:link href="http://mrbuk.de/post/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="http://blog.mrbuk.de/post/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Restrict your LG31MU97 on MacOS to 50Hz</title>
-      <link>http://mrbuk.de/post/lg31mu97-on-macos-50hz-only/</link>
+      <link>http://blog.mrbuk.de/post/lg31mu97-on-macos-50hz-only/</link>
       <pubDate>Thu, 05 Oct 2017 01:40:00 +0200</pubDate>
       
-      <guid>http://mrbuk.de/post/lg31mu97-on-macos-50hz-only/</guid>
+      <guid>http://blog.mrbuk.de/post/lg31mu97-on-macos-50hz-only/</guid>
       <description>Caution: Before doing anything please make sure that you have working backup. Apply at your own risk!
 I am using a LG31MU97-B display with a MacBook Pro 15&amp;rdquo; (Mid 2015). According to the displays EDID the recommended resolution is 4096x2160@60Hz. Unfortunately when running at that refresh rate the display turns black after a while and becomes unusable. This seems to be a limitation of that particular setup under MacOS.
 The only known fix - other than switching to Linux or Windows - is to use a 50Hz based resolution.</description>
@@ -24,10 +24,10 @@ The only known fix - other than switching to Linux or Windows - is to use a 50Hz
     
     <item>
       <title>Human Readable PCF Logs</title>
-      <link>http://mrbuk.de/post/human-readable-pcf-logs/</link>
+      <link>http://blog.mrbuk.de/post/human-readable-pcf-logs/</link>
       <pubDate>Fri, 24 Feb 2017 11:50:07 +0100</pubDate>
       
-      <guid>http://mrbuk.de/post/human-readable-pcf-logs/</guid>
+      <guid>http://blog.mrbuk.de/post/human-readable-pcf-logs/</guid>
       <description>Sometimes you need to debug some Cloud Foundry jobs. One obvious thing to do is looking into logs. Unfortunately some of the jobs that use lager don&amp;rsquo;t log a human readable timestamp but only a epoch time.
 If you don&amp;rsquo;t use a log aggregation tool that allows you to transform the timestamps you might want to take a look at the following script:
  Installation Installing is pretty easy either via</description>
@@ -35,40 +35,40 @@ If you don&amp;rsquo;t use a log aggregation tool that allows you to transform t
     
     <item>
       <title>Memory/disk allocation of Cloud Foundry apps</title>
-      <link>http://mrbuk.de/post/memory-disk-allocation-cloud-foundry/</link>
+      <link>http://blog.mrbuk.de/post/memory-disk-allocation-cloud-foundry/</link>
       <pubDate>Tue, 04 Oct 2016 21:04:57 +0200</pubDate>
       
-      <guid>http://mrbuk.de/post/memory-disk-allocation-cloud-foundry/</guid>
+      <guid>http://blog.mrbuk.de/post/memory-disk-allocation-cloud-foundry/</guid>
       <description>With the help of the cf api, cf cli and jq one can pretty easily check the amount of memory/storage allocated for apps/containers deployed in CF:
 cf curl /v2/apps | jq &#39;[.resources[].entity | \ select(.memory &amp;gt; 1) | \ {&amp;quot;mem&amp;quot;: . | (.memory * .instances), \ &amp;quot;disk&amp;quot;: . | (.disk_quota * .instances)}] | \ {&amp;quot;instances&amp;quot;: map(.) | length, \ &amp;quot;mem_total&amp;quot;: map(.mem) | add, \ &amp;quot;disk_total&amp;quot;: map(.disk) | add}&#39; { &amp;quot;instances&amp;quot;: 5, &amp;quot;mem_total&amp;quot;: 32768, &amp;quot;disk_total&amp;quot;: 32768 }  Values are in MB.</description>
     </item>
     
     <item>
       <title>OSX Toogle Natural Scrolling</title>
-      <link>http://mrbuk.de/post/osx-toogle-natural-scrolling/</link>
+      <link>http://blog.mrbuk.de/post/osx-toogle-natural-scrolling/</link>
       <pubDate>Sun, 29 May 2016 10:08:00 +0200</pubDate>
       
-      <guid>http://mrbuk.de/post/osx-toogle-natural-scrolling/</guid>
+      <guid>http://blog.mrbuk.de/post/osx-toogle-natural-scrolling/</guid>
       <description>When using the trackpad I prefer natural scrolling when using the MacBook with a keyboard and regular mouse I prefer to switch off natural scrolling. To make things more comfortable I came up with the following script the I run via Spotlight:
  Put it on the desktop or some place you like. Keep in mind that if you want to run it via Spotlight you should use .command as the suffix.</description>
     </item>
     
     <item>
       <title>Docker Machine wrong IP with Fusion driver</title>
-      <link>http://mrbuk.de/post/docker-machine-fusion-ip/</link>
+      <link>http://blog.mrbuk.de/post/docker-machine-fusion-ip/</link>
       <pubDate>Fri, 29 Jan 2016 20:00:07 +0200</pubDate>
       
-      <guid>http://mrbuk.de/post/docker-machine-fusion-ip/</guid>
+      <guid>http://blog.mrbuk.de/post/docker-machine-fusion-ip/</guid>
       <description>Using docker-machine with VMWare Fusion may result in some weird behaviour if one has configured a static lease for the machine that docker will use.
 After trying to start the Docker VM using docker-machine an error message was printed that told me that the IP address changed and hence the certificates are not valid anymore. Option 1 regenerating the certificates didn&amp;rsquo;t sound right. Option 2 configuring a static lease for the VM sounded better.</description>
     </item>
     
     <item>
       <title>Pseudo Java Profiler aka sorted thread dump</title>
-      <link>http://mrbuk.de/post/pseudo-java-profiler/</link>
+      <link>http://blog.mrbuk.de/post/pseudo-java-profiler/</link>
       <pubDate>Wed, 05 Mar 2014 23:20:27 +0200</pubDate>
       
-      <guid>http://mrbuk.de/post/pseudo-java-profiler/</guid>
+      <guid>http://blog.mrbuk.de/post/pseudo-java-profiler/</guid>
       <description>Ever wondered what your multi threaded Java application is doing? A thread dump sorted by CPU consumption can help to find out. Having only access to a shell (bash) as well as to the tools bundled with the JDK I came up with the following solution
 #!/bin/bash if [ &amp;quot;$#&amp;quot; -ne 1 ]; then echo &amp;quot;Usage: $0 jps-filter-grep-expr&amp;quot; exit 1 fi jps_filter=$1 # extract the PID of the java process java_app_pid=$(jps -lvm | grep ${jps_filter} | awk &#39;{print $1}&#39;) # get 10 top consuming threads top_consuming_threads=$(top -n1 -H -p ${java_app_pid} | \ egrep java | egrep -o &#39;^[^0-9]*[0-9]+ &#39; | \ sed -r &#39;s/[^0-9]+//g&#39; | head) temp_file=$(mktemp) # create jstack_output jstack ${java_app_pid} &amp;gt; ${temp_file} # print for every thread the current stack trace for thread in ${top_consuming_threads}; do echo &amp;quot;Stack trace for Thread &#39;${thread}&#39;:&amp;quot; printf -v thread_hex &amp;quot;%x&amp;quot; $thread grep -A10 &amp;quot;nid=0x${thread_hex}&amp;quot; ${temp_file} echo done; rm ${temp_file}  What we are doing to achieve that is the following:</description>
     </item>
