@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>productivity on Markus&#39; Notebook</title>
-    <link>http://blog.mrbuk.de/tags/productivity/</link>
+    <link>https://blog.mrbuk.de/tags/productivity/</link>
     <description>Recent content in productivity on Markus&#39; Notebook</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Thu, 05 Oct 2017 01:40:00 +0200</lastBuildDate>
     
-	<atom:link href="http://blog.mrbuk.de/tags/productivity/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://blog.mrbuk.de/tags/productivity/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Restrict your LG31MU97 on MacOS to 50Hz</title>
-      <link>http://blog.mrbuk.de/post/lg31mu97-on-macos-50hz-only/</link>
+      <link>https://blog.mrbuk.de/post/lg31mu97-on-macos-50hz-only/</link>
       <pubDate>Thu, 05 Oct 2017 01:40:00 +0200</pubDate>
       
-      <guid>http://blog.mrbuk.de/post/lg31mu97-on-macos-50hz-only/</guid>
+      <guid>https://blog.mrbuk.de/post/lg31mu97-on-macos-50hz-only/</guid>
       <description>Caution: Before doing anything please make sure that you have working backup. Apply at your own risk!
 I am using a LG31MU97-B display with a MacBook Pro 15&amp;rdquo; (Mid 2015). According to the displays EDID the recommended resolution is 4096x2160@60Hz. Unfortunately when running at that refresh rate the display turns black after a while and becomes unusable. This seems to be a limitation of that particular setup under MacOS.
 The only known fix - other than switching to Linux or Windows - is to use a 50Hz based resolution.</description>
@@ -24,20 +24,20 @@ The only known fix - other than switching to Linux or Windows - is to use a 50Hz
     
     <item>
       <title>OSX Toogle Natural Scrolling</title>
-      <link>http://blog.mrbuk.de/post/osx-toogle-natural-scrolling/</link>
+      <link>https://blog.mrbuk.de/post/osx-toogle-natural-scrolling/</link>
       <pubDate>Sun, 29 May 2016 10:08:00 +0200</pubDate>
       
-      <guid>http://blog.mrbuk.de/post/osx-toogle-natural-scrolling/</guid>
+      <guid>https://blog.mrbuk.de/post/osx-toogle-natural-scrolling/</guid>
       <description>When using the trackpad I prefer natural scrolling when using the MacBook with a keyboard and regular mouse I prefer to switch off natural scrolling. To make things more comfortable I came up with the following script the I run via Spotlight:
  Put it on the desktop or some place you like. Keep in mind that if you want to run it via Spotlight you should use .command as the suffix.</description>
     </item>
     
     <item>
       <title>Docker Machine wrong IP with Fusion driver</title>
-      <link>http://blog.mrbuk.de/post/docker-machine-fusion-ip/</link>
+      <link>https://blog.mrbuk.de/post/docker-machine-fusion-ip/</link>
       <pubDate>Fri, 29 Jan 2016 20:00:07 +0200</pubDate>
       
-      <guid>http://blog.mrbuk.de/post/docker-machine-fusion-ip/</guid>
+      <guid>https://blog.mrbuk.de/post/docker-machine-fusion-ip/</guid>
       <description>Using docker-machine with VMWare Fusion may result in some weird behaviour if one has configured a static lease for the machine that docker will use.
 After trying to start the Docker VM using docker-machine an error message was printed that told me that the IP address changed and hence the certificates are not valid anymore. Option 1 regenerating the certificates didn&amp;rsquo;t sound right. Option 2 configuring a static lease for the VM sounded better.</description>
     </item>

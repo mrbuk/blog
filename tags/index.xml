@@ -2,84 +2,84 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on Markus&#39; Notebook</title>
-    <link>http://blog.mrbuk.de/tags/</link>
+    <link>https://blog.mrbuk.de/tags/</link>
     <description>Recent content in Tags on Markus&#39; Notebook</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Thu, 05 Oct 2017 01:40:00 +0200</lastBuildDate>
     
-	<atom:link href="http://blog.mrbuk.de/tags/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://blog.mrbuk.de/tags/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>osx</title>
-      <link>http://blog.mrbuk.de/tags/osx/</link>
+      <link>https://blog.mrbuk.de/tags/osx/</link>
       <pubDate>Thu, 05 Oct 2017 01:40:00 +0200</pubDate>
       
-      <guid>http://blog.mrbuk.de/tags/osx/</guid>
+      <guid>https://blog.mrbuk.de/tags/osx/</guid>
       <description></description>
     </item>
     
     <item>
       <title>productivity</title>
-      <link>http://blog.mrbuk.de/tags/productivity/</link>
+      <link>https://blog.mrbuk.de/tags/productivity/</link>
       <pubDate>Thu, 05 Oct 2017 01:40:00 +0200</pubDate>
       
-      <guid>http://blog.mrbuk.de/tags/productivity/</guid>
+      <guid>https://blog.mrbuk.de/tags/productivity/</guid>
       <description></description>
     </item>
     
     <item>
       <title>cloud foundry</title>
-      <link>http://blog.mrbuk.de/tags/cloud-foundry/</link>
+      <link>https://blog.mrbuk.de/tags/cloud-foundry/</link>
       <pubDate>Fri, 24 Feb 2017 11:50:07 +0100</pubDate>
       
-      <guid>http://blog.mrbuk.de/tags/cloud-foundry/</guid>
+      <guid>https://blog.mrbuk.de/tags/cloud-foundry/</guid>
       <description></description>
     </item>
     
     <item>
       <title>troubleshooting</title>
-      <link>http://blog.mrbuk.de/tags/troubleshooting/</link>
+      <link>https://blog.mrbuk.de/tags/troubleshooting/</link>
       <pubDate>Fri, 24 Feb 2017 11:50:07 +0100</pubDate>
       
-      <guid>http://blog.mrbuk.de/tags/troubleshooting/</guid>
+      <guid>https://blog.mrbuk.de/tags/troubleshooting/</guid>
       <description></description>
     </item>
     
     <item>
       <title>operations</title>
-      <link>http://blog.mrbuk.de/tags/operations/</link>
+      <link>https://blog.mrbuk.de/tags/operations/</link>
       <pubDate>Tue, 04 Oct 2016 21:04:57 +0200</pubDate>
       
-      <guid>http://blog.mrbuk.de/tags/operations/</guid>
+      <guid>https://blog.mrbuk.de/tags/operations/</guid>
       <description></description>
     </item>
     
     <item>
       <title>docker</title>
-      <link>http://blog.mrbuk.de/tags/docker/</link>
+      <link>https://blog.mrbuk.de/tags/docker/</link>
       <pubDate>Fri, 29 Jan 2016 20:00:07 +0200</pubDate>
       
-      <guid>http://blog.mrbuk.de/tags/docker/</guid>
+      <guid>https://blog.mrbuk.de/tags/docker/</guid>
       <description></description>
     </item>
     
     <item>
       <title>java</title>
-      <link>http://blog.mrbuk.de/tags/java/</link>
+      <link>https://blog.mrbuk.de/tags/java/</link>
       <pubDate>Wed, 05 Mar 2014 23:20:27 +0200</pubDate>
       
-      <guid>http://blog.mrbuk.de/tags/java/</guid>
+      <guid>https://blog.mrbuk.de/tags/java/</guid>
       <description></description>
     </item>
     
     <item>
       <title>performance</title>
-      <link>http://blog.mrbuk.de/tags/performance/</link>
+      <link>https://blog.mrbuk.de/tags/performance/</link>
       <pubDate>Wed, 05 Mar 2014 23:20:27 +0200</pubDate>
       
-      <guid>http://blog.mrbuk.de/tags/performance/</guid>
+      <guid>https://blog.mrbuk.de/tags/performance/</guid>
       <description></description>
     </item>
     
